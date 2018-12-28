@@ -1,0 +1,49 @@
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Danh sách phòng
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã phòng</th>
+                        <th>Khách sạn</th>
+                        <th>Giá phòng</th>
+                        <th>Loại phòng</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% if(locals.datas) { %>
+                    <% datas.forEach(item => { %>
+                    <tr>
+                        <th><%= item.id %></th>
+                        <th><%= item.hotel %></th>
+                        <th><%= item.price %></th>
+                        <th><%= item.room_type %></th>
+                        <th>
+                            <a href="edit?page=roomlist&id=<%=item.id%>">sửa</a>
+                            <a href="delete?page=roomlist&id=<%=item.id%>" onclick="_delete()">xóa</a>
+                        </th>
+
+                        <script>
+                            function _delete () {
+                                if(confirm('Bạn chắc chắn muốn xóa ? \n Dữ liệu sẽ không thể khôi phục!')) {
+                                    next();
+                                } else {
+                                    return;
+                                }
+                            }
+                        </script>
+                    </tr>
+                    <% }) %>
+                    <% } %>
+                </tbody>
+                
+            </table>
+        </div>
+    </div>
+</div>

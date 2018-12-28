@@ -1,0 +1,68 @@
+<%- include('../nav-bar.ejs') %>
+
+<div id="wrapper">
+
+    <%- include('../side-bar.ejs') %>
+
+    <!-- Content -->
+    <div id="content-wrapper">
+
+
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/admin">Trang chính</a>
+                </li>
+                <li class="breadcrumb-item active">Quản lí phòng</li>
+            </ol>
+
+            <!-- Alert Message -->
+            <% if(locals.message1 && message1 != '') { %>
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×</button>
+                <p>
+                    <%= message1 %>
+                </p>
+            </div>
+            <% } %>
+
+            <% if( locals.message2 && message2 != '') { %>
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×</button>
+
+                <p>
+                    <%= message2 %>
+                </p>
+            </div>
+            <%  } %>
+
+            <!-- Tab bar -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" href="list?page=roomlist" id="roomlist">Phòng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="list?page=hotel" id="hotel">Khách sạn</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="list?page=roomtype" id="roomtype">Loại phòng</a>
+                </li>
+            </ul>
+            <script>$("#<%= page %>").addClass("active");</script>
+            <br>
+
+            <!-- Table  -->
+            <% if(page !='') { %>
+            <%- include(page) %>
+            <% } %>
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+
+</div>
+<!-- /#wrapper -->
+
+<%- include('../sticky-footer.ejs') %>
