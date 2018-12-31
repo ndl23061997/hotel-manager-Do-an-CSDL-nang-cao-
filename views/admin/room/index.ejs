@@ -42,13 +42,13 @@
             <!-- Tab bar -->
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" href="list?page=roomlist" id="roomlist">Phòng</a>
+                    <a class="nav-link" href="room-list" id="room">Phòng</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="list?page=hotel" id="hotel">Khách sạn</a>
+                    <a class="nav-link" href="hotel-list" id="hotel">Khách sạn</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="list?page=roomtype" id="roomtype">Loại phòng</a>
+                    <a class="nav-link" href="roomtype-list" id="roomtype">Loại phòng</a>
                 </li>
             </ul>
             <script>$("#<%= page %>").addClass("active");</script>
@@ -56,7 +56,7 @@
 
             <!-- Table  -->
             <% if(page !='') { %>
-            <%- include(page) %>
+            <%- include(page+'-list') %>
             <% } %>
         </div>
         <!-- /.content-wrapper -->

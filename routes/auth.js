@@ -1,11 +1,12 @@
+var createError = require('http-errors');
 
-function checkLoginAdmin(req, res, next) {
+function checkLoginAdmin(err, req, res, next) {
     if (req.isAuthenticated()) {
         //console.log("Loai tai khoan", req.session.passport.user)
         if (req.session.passport.user.type == 0) {
             next();
         } else {
-            res.redirect('/login');
+            next(createError(403 , 'Quyền truy cập bị hạn chế'))
         }
 
     } else {
@@ -15,11 +16,7 @@ function checkLoginAdmin(req, res, next) {
 
 function checkLoginUser(req, res, next) {
     if (req.isAuthenticated()) {
-        if (req.session.passport.user.type == 2) {
-            next();
-        } else {
-            res.redirect('/login');
-        }
+        next();
     } else {
         res.redirect('/login');
     }
@@ -31,7 +28,7 @@ function checkLoginEmployee(req, res, next) {
         if (req.session.passport.user.type == 0 | req.session.passport.user.type == 1) {
             next();
         } else {
-            res.redirect('/login');
+            next(createError(403 , 'Quyền truy cập bị hạn chế'))
         }
 
     } else {

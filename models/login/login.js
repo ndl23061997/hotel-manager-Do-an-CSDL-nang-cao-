@@ -9,7 +9,11 @@ var conn = mysql.createConnection({
 
 function getAccountByUsername(username, callback) {
     conn.query('call get_account_by_username(?)', [username], (err, data) => {
-        if (data[0].length > 0 ) {
+        if(err) {
+            console.log(err) 
+            callback(false, null);
+        }
+        if (data[0][0]) {
             // neu ton tai tai khoan
             callback(true, data[0][0]);
         } else {
@@ -21,7 +25,7 @@ function getAccountByUsername(username, callback) {
 function getAccount(username, password, callback) {
     conn.query("call get_account(?, ?)", [username, password], (err, data) => {
         if(err) throw err;
-        console.log(data);
+        // console.log('login model line 28 : \n' , data);
         if (data[0].length > 0) {
             // neu ton tai tai khoan
             callback(true, data[0][0]);

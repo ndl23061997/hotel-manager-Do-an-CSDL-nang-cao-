@@ -1,17 +1,20 @@
 var express = require('express');
 var router = express.Router();
-var adminModel = require('../../models/admin/admin');
 var auth = require('../auth');
 var roomRouter = require('./room/room')
-
-router.use('/room', auth.checkLoginAdmin, roomRouter);
+var serviceRouter = require('./service/service')
 router.use(auth.checkLoginEmployee);
+
+
+router.use('/room', roomRouter);
+router.use('/service',serviceRouter );
+
 
 // Trang chu
 router.get('/', (req, res, next) => {
     data = {
         title : 'Trang chủ',
-        check : 'home'
+        check : 'nav-home'
     }
     res.render('admin/index', data);
 })

@@ -76,7 +76,7 @@ function checkLogin(req, res, next) {
                 res.redirect('/employee');
                 break;
             default:
-                res.redirect('/')
+                res.redirect('/user')
                 break;
         }
     } else {
